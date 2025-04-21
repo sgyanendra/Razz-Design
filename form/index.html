@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+</head>
+<body>
+    <form id="myForm">
+        <h1>Send Email</h1>
+         Sender name<input type="text" id="sendername"><br>
+         To(Email) <input type="text" id="to"/><br>
+         Subject <input type="text" id="subject"/><br>
+         Reply To (Email)<input type="text" id="replyto"/><br>
+         Message<br>
+         <textarea id="message" cols="40" rows="8"></textarea><br>
+         <button type="submit"onClick="sendMail();">Submit</button>
+      </form>
+
+
+      <script type="text/javascript">
+      function sendMail(){
+       (function(){
+           emailjs.init({
+             publicKey: "v-wIDjl5TOFMHZNDY",
+           });
+        })();
+       var params={
+        sendername:document.querySelector("#sendername").value,
+        to:"gschandel6390@gmail.com",
+        Subject:document.querySelector("#subject").value,
+        replyto:document.querySelector("#replyto").value,
+        message:document.querySelector("#message").value,
+       };
+       
+       var serviceID="service_u14w69s";    
+       var templateID="template_s08gxca";
+
+       emailjs.send(serviceID,templateID,params)
+       .then(res=>{
+        alert("Email send successfully");
+       }).catch();
+    }  
+     </script>
+     
+      <script src="index.js"></script>
+</body>
+</html>
